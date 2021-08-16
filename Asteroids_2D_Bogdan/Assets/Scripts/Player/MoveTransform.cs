@@ -8,8 +8,8 @@ namespace Asteroids2D
         private Vector3 _move;
         
         public float Speed { get; protected set; }
-        
-        public MoveTransform(Transform transform, float speed)
+
+        protected MoveTransform(Transform transform, float speed)
         {
             _transform = transform;
             Speed = speed;
