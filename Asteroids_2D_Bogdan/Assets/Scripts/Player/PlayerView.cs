@@ -15,7 +15,7 @@ namespace Asteroids2D
         
         private void Start()
         {
-            _player = FindObjectOfType<PlayerInitialize>();
+            _player = FindObjectOfType<GameStarter>()._playerInitialize;
             _camera = Camera.main;
             _ship = _player.ship;
             _playerShoot = _player.playerShoot;
@@ -52,6 +52,7 @@ namespace Asteroids2D
         {
             _playerHp.Collide(gameObject);
         }
+        
     } 
 }
 
