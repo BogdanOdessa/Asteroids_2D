@@ -36,7 +36,7 @@ namespace Asteroids2D
         public void Push(GameObject go)
         {
             _stack.Push(go);
-            //go.transform.SetParent(_root);
+            go.transform.SetParent(_root);
             go.SetActive(false);
         }
         

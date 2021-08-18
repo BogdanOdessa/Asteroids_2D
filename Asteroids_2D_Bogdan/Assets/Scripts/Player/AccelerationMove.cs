@@ -6,7 +6,8 @@ namespace Asteroids2D
     {
         private readonly float _acceleration;
 
-        public AccelerationMove(Transform transform, float speed, float acceleration) : base(transform, speed)
+        public AccelerationMove(Rigidbody2D rigidbody2D, Transform transform, float speed, float acceleration) 
+            : base(rigidbody2D, transform, speed)
         {
             _acceleration = acceleration;
         }
@@ -19,5 +20,6 @@ namespace Asteroids2D
         public void RemoveAcceleration()
         {
             Speed -= _acceleration;
-        }
-    }}
+        } 
+    }
+}

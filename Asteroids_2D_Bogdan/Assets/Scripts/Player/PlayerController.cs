@@ -4,17 +4,16 @@ using UnityEngine;
 
 namespace Asteroids2D
 {
-    public class PlayerController
+    public class PlayerController : IUpdateExecute, IFixedUpdateExecute
     {
         private readonly PlayerView _playerView;
         public PlayerController(PlayerView playerView)
         {
             _playerView = playerView;
         }
-        public void Execute()
+        public void UpdateExecute()
         {
-            _playerView.Rotate();
-            _playerView.Move();
+            
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 _playerView.Accelerate();
@@ -29,6 +28,12 @@ namespace Asteroids2D
             {
                 _playerView.Shoot();
             }
+        }
+
+        public void FixedUpdateExecute()
+        {
+            _playerView.Rotate();
+            _playerView.Move();
         }
     } 
 }

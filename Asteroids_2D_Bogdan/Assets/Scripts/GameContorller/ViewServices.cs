@@ -24,7 +24,6 @@ namespace Asteroids2D
 
         public static void Destroy(GameObject value)
         {
-            
             _viewCache[value.name].Push(value);
         }
         

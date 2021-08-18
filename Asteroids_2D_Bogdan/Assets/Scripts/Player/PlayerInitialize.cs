@@ -12,15 +12,17 @@ namespace Asteroids2D
         public PlayerHP playerHp;
         
         private float _hp;
-        private Transform _barrelTransform;
-        private  float _shipSpeed;
-        private  float _shipAcceleration;
-        private  Rigidbody2D _bulletRb;
-        private  float _bulletForce;
-        private Transform _playerPosition;
+        private float _maxPlayerHp = 100f;
+        private readonly Transform _barrelTransform;
+        private readonly float _shipSpeed;
+        private readonly float _shipAcceleration;
+        private readonly Rigidbody2D _bulletRb;
+        private readonly float _bulletForce;
+        private readonly Rigidbody2D _playerRigidBody;
+        private readonly Transform _playerPosition;
 
         public PlayerInitialize(Transform playerPosition, Transform barrelTransform, 
-            float shipSpeed, float shipAcceleration, Rigidbody2D bulletRb, float bulletForce)
+            float shipSpeed, float shipAcceleration, Rigidbody2D bulletRb, float bulletForce, Rigidbody2D playerRigidBody)
         {
             _playerPosition = playerPosition;
             _barrelTransform = barrelTransform;
@@ -28,17 +30,18 @@ namespace Asteroids2D
             _shipAcceleration = shipAcceleration;
             _bulletRb = bulletRb;
             _bulletForce = bulletForce;
+            _playerRigidBody = playerRigidBody;
         }
-        public void Init()
+        public void InitializePlayer()
         {
-            var moveTransform = new AccelerationMove(_playerPosition, _shipSpeed, _shipAcceleration);
+            var moveTransform = new AccelerationMove(_playerRigidBody,_playerPosition, _shipSpeed, _shipAcceleration);
             var rotation = new RotationShip(_playerPosition);
             ship = new Ship(moveTransform, rotation);
             
             //_barrelTransform = FindObjectOfType<PlayerView>().GetComponentInChildren<Transform>();
             playerShoot = new PlayerShoot(_bulletRb, _barrelTransform, _bulletForce);
 
-            _hp = 100f;
+            _hp = _maxPlayerHp;
             //_hp = playerSettings._hp;
             playerHp = new PlayerHP(_hp);
         }

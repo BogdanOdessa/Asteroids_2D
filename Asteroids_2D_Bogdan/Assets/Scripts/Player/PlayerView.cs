@@ -12,14 +12,16 @@ namespace Asteroids2D
         private PlayerInitialize _player;
         private PlayerShoot _playerShoot;
         private PlayerHP _playerHp;
-        
+        private readonly Axis _axis = new Axis();
+
         private void Start()
         {
-            _player = FindObjectOfType<GameStarter>()._playerInitialize;
+            _player = FindObjectOfType<GameStarter>().playerInitialize;
             _camera = Camera.main;
             _ship = _player.ship;
             _playerShoot = _player.playerShoot;
             _playerHp = _player.playerHp;
+            
         }
 
         public void Rotate()
@@ -30,7 +32,7 @@ namespace Asteroids2D
 
         public void Move()
         {
-            _ship.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            _ship.Move(Input.GetAxis(_axis.horizontal), Input.GetAxis(_axis.verctical));
         }
 
         public void Accelerate()

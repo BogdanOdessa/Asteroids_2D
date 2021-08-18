@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 837f95cea8256814a8ed495664a83330, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  speed: 10
-  acceleration: 10
+  speed: 1000
+  acceleration: 1000
   hp: 100
   bullet: {fileID: 7014967554766294038, guid: bb2253a17773f804c92a72b889826d8a, type: 3}
   force: 1000

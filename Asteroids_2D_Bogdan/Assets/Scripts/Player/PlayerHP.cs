@@ -2,25 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHP
+namespace Asteroids2D
 {
-    public float hp { get; private set; }
-
-    public PlayerHP(float hp)
+    public class PlayerHP
     {
-       this.hp = hp;
-    }
+        private float hp { get; set; }
 
-    public void Collide(GameObject gameObject)
-    {
-        if (hp <= 0)
+        public PlayerHP(float hp)
         {
-            Object.Destroy(gameObject);
+            this.hp = hp;
         }
-        else
+
+        public void Collide(GameObject gameObject)
         {
-            hp--;
-        } 
-    }
+            if (hp <= 0)
+            {
+                Object.Destroy(gameObject);
+            }
+            else
+            {
+                hp--;
+            } 
+        }
    
+    } 
 }
+

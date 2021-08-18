@@ -11,7 +11,7 @@ namespace Asteroids2D
         private readonly Rigidbody2D _bullet;
         private readonly Transform _barrel;
         private readonly float _force;
-        private GameObject _prefab;
+        private readonly GameObject _prefab;
         
         
         public PlayerShoot(Rigidbody2D bullet, Transform barrel, float force)
