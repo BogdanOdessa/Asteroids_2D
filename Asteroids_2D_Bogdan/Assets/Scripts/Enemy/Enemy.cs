@@ -7,6 +7,7 @@ namespace Asteroids2D
     {
         public static IEnemyFactory Factory;
         public Health Health { get; protected set; }
+        public float hp;
 
         private void Awake()
         {
@@ -18,6 +19,15 @@ namespace Asteroids2D
             var enemy = Instantiate(Resources.Load<Asteroid>("Enemy/Asteroid"));
         
             enemy.Health = hp;
+        
+            return enemy;
+        }
+        
+        public static AsteroidMoving CreateAsteroidMovingEnemy(float hp)
+        {
+            var enemy = Instantiate(Resources.Load<AsteroidMoving>("Enemy/AsteroidMoving"));
+        
+            enemy.hp = hp;
         
             return enemy;
         }
