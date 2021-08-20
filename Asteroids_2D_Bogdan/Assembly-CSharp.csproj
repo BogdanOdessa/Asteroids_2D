@@ -81,6 +81,8 @@
      <Compile Include="Assets\Scripts\Player\PlayerSetup.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
      <Compile Include="Assets\Scripts\Player\IPlayerFactory.cs" />
+     <Compile Include="Assets\Scripts\Enemy\AsteroidMoving.cs" />
+     <Compile Include="Assets\Scripts\Enemy\AsteroidMovingController.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

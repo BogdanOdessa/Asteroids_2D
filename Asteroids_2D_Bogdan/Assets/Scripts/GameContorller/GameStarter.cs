@@ -17,7 +17,9 @@ namespace Asteroids2D
         {
             CreatePlayer();
             Enemy.CreateAsteroidEnemy(new Health(_enemyHp, _enemyHp));
-            
+
+            Enemy.CreateAsteroidMovingEnemy(_enemyHp);
+
             //IEnemyFactory factory = new AsteroidFactory();
             //factory.Create(new Health(100.0f, 100.0f));
             //Enemy.Factory.Create(new Health(100f, 100f));
