@@ -1,18 +1,19 @@
 using System;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Asteroids2D
 {
     public sealed class Asteroid : Enemy
     {
-        public float maxhealth;
-        public float currenthealth;
-        
-        public Health Health;
+        private EnemyData EnemyData;
+        public float hp;
 
         private void Start()
         {
-            currenthealth = Health.Current;
-            maxhealth = Health.Max;
+            gameObject.name = EnemyData.AsteroidName;
         }
+
     }
+
 }

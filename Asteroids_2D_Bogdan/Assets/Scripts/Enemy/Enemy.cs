@@ -1,25 +1,37 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Asteroids2D
 {
-    public abstract class Enemy : MonoBehaviour
+   [Serializable] public abstract class Enemy : MonoBehaviour
     {
-        public static IEnemyFactory Factory;
-        public Health Health { get; protected set; }
-
-        private void Awake()
+        
+        public static AsteroidMovingController CreateAsteroidMovingController(AsteroidMovingModel asteroidMovingModel)
         {
-            Factory = new AsteroidFactory();
+            var enemy = Instantiate(Resources.Load<GameObject>("Enemy/AsteroidMoving"));
+            var asteroidMovingView = enemy.GetComponent<AsteroidMovingView>();
+            var asteroidMovingHp = new AsteroidMovingHp(asteroidMovingModel,asteroidMovingView);
+            var asteroidMovingController = new AsteroidMovingController(asteroidMovingView, asteroidMovingModel, asteroidMovingHp);
+            return asteroidMovingController;
         }
-
-        public static Asteroid CreateAsteroidEnemy(Health hp)
+        
+        public static AsteroidMovingController DeepCopyAsteroidMovingController(AsteroidMovingModel asteroidMovingModel)
         {
-            var enemy = Instantiate(Resources.Load<Asteroid>("Enemy/Asteroid"));
-        
-            enemy.Health = hp;
-        
-            return enemy;
+            var enemy = Instantiate(Resources.Load<GameObject>("Enemy/AsteroidMoving"));
+            var asteroidMovingView = enemy.GetComponent<AsteroidMovingView>();
+            
+            var asteroidMovingModelNew = asteroidMovingModel.DeepCopy();
+            asteroidMovingModelNew.initialHp = RandomHpGenerator.GenerateRandomNumber();
+            
+            var asteroidMovingHp = new AsteroidMovingHp(asteroidMovingModelNew,asteroidMovingView);
+            var asteroidMovingController = new AsteroidMovingController(asteroidMovingView, 
+                asteroidMovingModelNew, asteroidMovingHp);
+            
+            var randomPosition = new TransformRandom(enemy.transform);
+            enemy.transform.position = randomPosition.GenerateRandomPosition();
+            
+            return asteroidMovingController;
         }
     }
 
