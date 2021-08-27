@@ -9,30 +9,48 @@ namespace Asteroids2D
     {
         private PlayerController _playerController;
         private PlayerView _playerView;
-
-        private AsteroidMovingController _asteroidMovingController;
-        private AsteroidMoving _asteroidMoving;
         
+        private  List<AsteroidMovingController> _asteroidMovingControllers = new List<AsteroidMovingController>();
+        private AsteroidMovingModel _asteroidMovingModel;
+        private int enemyAmount = 100;
+
         private void Start()
         {
             _playerView = FindObjectOfType<PlayerView>();
             _playerController = new PlayerController(_playerView);
             
-            _asteroidMoving = FindObjectOfType<AsteroidMoving>();
-            _asteroidMovingController = new AsteroidMovingController(_asteroidMoving);
+            
+            _asteroidMovingModel = new AsteroidMovingModel();
+            _asteroidMovingControllers.Add(Enemy.CreateAsteroidMovingController(_asteroidMovingModel));
+            
+            for (var i = 0; i < enemyAmount; i++)
+            {
+                _asteroidMovingControllers.Add(Enemy.DeepCopyAsteroidMovingController(_asteroidMovingModel));
+            }
+
         }
 
         private void Update()
         {
             _playerController.UpdateExecute();
-            _asteroidMovingController.UpdateExecute();
+
+            foreach (var t in _asteroidMovingControllers)
+            {
+                t.UpdateExecute();
+            }
         }
 
         private void FixedUpdate()
         {
             _playerController.FixedUpdateExecute();
-            _asteroidMovingController.FixedUpdateExecute();
+            
+            
+            foreach (var t in _asteroidMovingControllers)
+            {
+                t.FixedUpdateExecute();
+            }
         }
-    } 
+        
+    }  
 }
 

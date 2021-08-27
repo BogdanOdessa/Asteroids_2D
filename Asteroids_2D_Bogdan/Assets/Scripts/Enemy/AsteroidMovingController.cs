@@ -1,22 +1,52 @@
-﻿namespace Asteroids2D
+﻿using UnityEngine;
+
+namespace Asteroids2D
 {
     public class AsteroidMovingController : IUpdateExecute, IFixedUpdateExecute
     {
-        private readonly AsteroidMoving _asteroidMoving;
+        private readonly AsteroidMovingView _asteroidMovingView;
+        private readonly AsteroidMovingModel _asteroidMovingModel;
+        private readonly AsteroidMovingHp _asteroidMovingHp;
 
-        public AsteroidMovingController(AsteroidMoving asteroidMoving)
+        public AsteroidMovingController(AsteroidMovingView asteroidMovingView, AsteroidMovingModel asteroidMovingModel, 
+            AsteroidMovingHp asteroidMovingHp)
         {
-            _asteroidMoving = asteroidMoving;
+            _asteroidMovingView = asteroidMovingView;
+            _asteroidMovingModel = asteroidMovingModel;
+            _asteroidMovingHp = asteroidMovingHp;
+            _asteroidMovingView.GetController(this);
         }
-
+    
         public void UpdateExecute()
         {
-            _asteroidMoving.RandomMovement();
+            _asteroidMovingView.RandomMovement(
+                AsteroidMovingModel.MINRandomRange, AsteroidMovingModel.MAXRandomRange, 
+                _asteroidMovingModel.accelerationTime);
         }
 
         public void FixedUpdateExecute()
         {
-            _asteroidMoving.AddForce();
+            _asteroidMovingView.AddForce(_asteroidMovingModel.maxSpeed);
         }
+
+        public void Collision(Collision2D other)
+        {
+            if (other.gameObject.GetComponent<PlayerView>())
+            {
+                KillPlayer(other);
+            }
+
+            if (other.gameObject.GetComponent<Bullet>())
+            {
+                _asteroidMovingHp.TakeDamage(Bullet.Damage);
+            }
+
+        }
+
+        private void KillPlayer(Collision2D player)
+        {
+            player.gameObject.SetActive(false);
+        }
+        
     }
 }

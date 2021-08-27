@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public const float Damage = 50f;
+
     private void Start()
     {
         Invoke("DestroyBullet", 5f);
@@ -17,9 +19,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Asteroid"))
+        if(collision.gameObject.GetComponent<Enemy>())
         {
             DestroyBullet();
+            
         }
         
     }
