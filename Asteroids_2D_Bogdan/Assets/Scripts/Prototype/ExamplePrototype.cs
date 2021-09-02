@@ -9,16 +9,16 @@ namespace Asteroids2D
         {
             PlayerData playerData = new PlayerData
             {
-                Hp = new Hp
+                hp = new Hp
                 {
-                    CurrentHP = 100,
-                    MaxHP = 100
+                    currentHp = 100,
+                    maxHp = 100
                 },
-                Speed = 100
+                speed = 100
             };
             
             PlayerData playerDataNew = playerData.DeepCopy();
-            playerDataNew.Hp.CurrentHP = 200;
+            playerDataNew.hp.currentHp = 200;
             
             Debug.Log(playerData);
             Debug.Log(playerDataNew);

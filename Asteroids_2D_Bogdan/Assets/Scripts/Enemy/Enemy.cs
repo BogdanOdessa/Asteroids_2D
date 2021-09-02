@@ -33,6 +33,21 @@ namespace Asteroids2D
             
             return asteroidMovingController;
         }
+
+        public static EnemyShipController CreateEnemyShipController()
+        {
+            var enemy = Instantiate(Resources.Load<GameObject>(path: "Enemy/EnemyShip"));
+            var enemyShipView = enemy.GetComponent<EnemyShipView>();
+            var enemyRigidBody = enemy.GetComponent<Rigidbody2D>();
+            var enemyShoot = enemy.GetComponent<EnemyShoot>();
+            var barrelTransform = enemyShipView.transform.GetChild(0);
+            var enemyShip = new EnemyShip(new EnemyCasualAttack(enemyShoot),
+                new EnemyCasualMove(enemyRigidBody));
+
+            var enemyShipModel = new EnemyShipModel();
+            var enemyShipController = new EnemyShipController(enemyShip, enemyShipModel, enemyShipView);
+            return enemyShipController;
+        }
     }
 
 }

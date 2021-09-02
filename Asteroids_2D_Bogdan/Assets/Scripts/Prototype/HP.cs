@@ -1,15 +1,16 @@
 using System;
+using UnityEngine.Serialization;
 
 namespace Asteroids2D
 {
     [Serializable]internal sealed class Hp
     {
-        public float MaxHP;
-        public float CurrentHP;
+         public float maxHp;
+         public float currentHp;
 
         public override string ToString()
         {
-            return $"MaxHP {MaxHP} CurrentHP {CurrentHP}";
+            return $"MaxHP {maxHp} CurrentHP {currentHp}";
         }
     }
 }

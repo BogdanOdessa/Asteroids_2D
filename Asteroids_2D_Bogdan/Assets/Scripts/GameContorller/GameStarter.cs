@@ -46,7 +46,9 @@ namespace Asteroids2D
                 playerSettings.speed, playerSettings.acceleration, 
                 playerSettings.bullet, playerSettings.force, _rigidbody2D);
             
+            
             playerInitialize.InitializePlayer();
+            
         }
         
     }
