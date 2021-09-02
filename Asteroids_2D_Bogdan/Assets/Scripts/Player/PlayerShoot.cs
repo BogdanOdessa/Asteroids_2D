@@ -14,6 +14,7 @@ namespace Asteroids2D
         private readonly GameObject _prefab;
         
         
+        
         public PlayerShoot(Rigidbody2D bullet, Transform barrel, float force)
         {
             _bullet = bullet;
@@ -21,7 +22,7 @@ namespace Asteroids2D
             _force = force;
             _prefab = Resources.Load<GameObject>("Bullet");
         }
-        // ReSharper disable Unity.PerformanceAnalysis
+       
         public void Shoot()
         {
             //var temAmmunition = Object.Instantiate(_bullet, _barrel.position, _barrel.rotation);
