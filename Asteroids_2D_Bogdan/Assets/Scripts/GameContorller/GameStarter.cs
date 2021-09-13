@@ -13,14 +13,23 @@ namespace Asteroids2D
         public PlayerSettings playerSettings;
 
         private readonly float _enemyHp = 100f;
+
+        private GameObject _enemy;
+        [SerializeField] private Sprite _enemySprite;
+        [SerializeField] private Transform _enemyPosition;
+        
+        
         private void Awake()
         {
             CreatePlayer();
-            Enemy.CreateAsteroidEnemy(new Health(_enemyHp, _enemyHp));
+
+            var gameObjectBuilder = new GameObjectBuilder();
+
+            _enemy = gameObjectBuilder.
+                Visual.Name("Enemy").Sprite(_enemySprite).Color(Color.blue).TransformPosition(_enemyPosition).
+                Physics.BoxCollider2D().
+                AddDatas.AddAsteroidClass().AddHp(_enemyHp);
             
-            //IEnemyFactory factory = new AsteroidFactory();
-            //factory.Create(new Health(100.0f, 100.0f));
-            //Enemy.Factory.Create(new Health(100f, 100f));
         }
 
         private void CreatePlayer()
@@ -37,7 +46,9 @@ namespace Asteroids2D
                 playerSettings.speed, playerSettings.acceleration, 
                 playerSettings.bullet, playerSettings.force, _rigidbody2D);
             
+            
             playerInitialize.InitializePlayer();
+            
         }
         
     }

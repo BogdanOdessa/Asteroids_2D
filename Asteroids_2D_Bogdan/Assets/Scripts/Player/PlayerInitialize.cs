@@ -34,7 +34,7 @@ namespace Asteroids2D
         }
         public void InitializePlayer()
         {
-            var moveTransform = new AccelerationMove(_playerRigidBody,_playerPosition, _shipSpeed, _shipAcceleration);
+            var moveTransform = new AccelerationPlayerMove(_playerRigidBody,_playerPosition, _shipSpeed, _shipAcceleration);
             var rotation = new RotationShip(_playerPosition);
             ship = new Ship(moveTransform, rotation);
             
