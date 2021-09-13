@@ -7,14 +7,16 @@ namespace Asteroids2D
         private readonly AsteroidMovingView _asteroidMovingView;
         private readonly AsteroidMovingModel _asteroidMovingModel;
         private readonly AsteroidMovingHp _asteroidMovingHp;
+        protected readonly PointsCounter PointsCounter;
 
         public AsteroidMovingController(AsteroidMovingView asteroidMovingView, AsteroidMovingModel asteroidMovingModel, 
-            AsteroidMovingHp asteroidMovingHp)
+            AsteroidMovingHp asteroidMovingHp, PointsCounter pointsCounterClass)
         {
             _asteroidMovingView = asteroidMovingView;
             _asteroidMovingModel = asteroidMovingModel;
             _asteroidMovingHp = asteroidMovingHp;
             _asteroidMovingView.GetController(this);
+            PointsCounter = pointsCounterClass;
         }
     
         public void UpdateExecute()
@@ -38,7 +40,8 @@ namespace Asteroids2D
 
             if (other.gameObject.GetComponent<Bullet>())
             {
-                _asteroidMovingHp.TakeDamage(Bullet.Damage);
+                var bullet = other.gameObject.GetComponent<Bullet>();
+                _asteroidMovingHp.TakeDamage(bullet.Damage);
             }
 
         }
@@ -46,6 +49,11 @@ namespace Asteroids2D
         private void KillPlayer(Collision2D player)
         {
             player.gameObject.SetActive(false);
+        }
+
+        public void GetPointsAmount()
+        {
+            PointsCounter.ReceivePoints();
         }
         
     }

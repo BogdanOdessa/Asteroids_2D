@@ -7,26 +7,30 @@ namespace Asteroids2D
    [Serializable] public abstract class Enemy : MonoBehaviour
     {
         
-        public static AsteroidMovingController CreateAsteroidMovingController(AsteroidMovingModel asteroidMovingModel)
+        public static AsteroidMovingController CreateAsteroidMovingController(AsteroidMovingModel asteroidMovingModel,
+            PointsCounter pointsCounterClass)
         {
             var enemy = Instantiate(Resources.Load<GameObject>("Enemy/AsteroidMoving"));
             var asteroidMovingView = enemy.GetComponent<AsteroidMovingView>();
+            var points = pointsCounterClass;
             var asteroidMovingHp = new AsteroidMovingHp(asteroidMovingModel,asteroidMovingView);
-            var asteroidMovingController = new AsteroidMovingController(asteroidMovingView, asteroidMovingModel, asteroidMovingHp);
+            var asteroidMovingController = new AsteroidMovingController(asteroidMovingView, 
+                asteroidMovingModel, asteroidMovingHp, points);
             return asteroidMovingController;
         }
         
-        public static AsteroidMovingController DeepCopyAsteroidMovingController(AsteroidMovingModel asteroidMovingModel)
+        public static AsteroidMovingController DeepCopyAsteroidMovingController(AsteroidMovingModel asteroidMovingModel, 
+            PointsCounter pointsCounterClass)
         {
             var enemy = Instantiate(Resources.Load<GameObject>("Enemy/AsteroidMoving"));
             var asteroidMovingView = enemy.GetComponent<AsteroidMovingView>();
             
             var asteroidMovingModelNew = asteroidMovingModel.DeepCopy();
             asteroidMovingModelNew.initialHp = RandomHpGenerator.GenerateRandomNumber();
-            
+            var points = pointsCounterClass;
             var asteroidMovingHp = new AsteroidMovingHp(asteroidMovingModelNew,asteroidMovingView);
             var asteroidMovingController = new AsteroidMovingController(asteroidMovingView, 
-                asteroidMovingModelNew, asteroidMovingHp);
+                asteroidMovingModelNew, asteroidMovingHp, points);
             
             var randomPosition = new TransformRandom(enemy.transform);
             enemy.transform.position = randomPosition.GenerateRandomPosition();

@@ -47,6 +47,7 @@ private const float MAXRandomRange = 1f;
         public void Die()
         {
             Destroy(gameObject);
+            _asteroidMovingController.GetPointsAmount();
         }
 
         private void OnCollisionEnter2D(Collision2D other)
