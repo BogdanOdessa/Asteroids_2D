@@ -9,14 +9,18 @@ namespace Asteroids2D
         
         internal List<AsteroidMovingController> CreateEnemiesWithController(float enemiesAmount, PointsCounter pointsCounterClass)
         {
+            var listenerHitShowName = new ListenerHitShowName();
+
             var asteroidMovingControllers = new List<AsteroidMovingController>();
             var asteroidMovingModel = new AsteroidMovingModel();
             var points = pointsCounterClass;
+           
             asteroidMovingControllers.Add(Enemy.CreateAsteroidMovingController(asteroidMovingModel, points));
             
             for (var i = 0; i < enemiesAmount; i++)
             {
                 asteroidMovingControllers.Add(Enemy.DeepCopyAsteroidMovingController(asteroidMovingModel, points));
+                listenerHitShowName.Add(asteroidMovingControllers[i]._asteroidMovingHp);
             }
 
             return asteroidMovingControllers;

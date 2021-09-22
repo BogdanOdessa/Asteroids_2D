@@ -16,6 +16,7 @@ namespace Asteroids2D
         private EnemyShipController enemyShipContoller;
         private PointsCounter _pointsCounter;
         private CreatePlayerAbilities _createPlayerAbilities;
+        
 
         private void Start()
         {
@@ -24,8 +25,8 @@ namespace Asteroids2D
             _createPlayerAbilities = new CreatePlayerAbilities();
             
             _playerController = new PlayerController(_playerView,gun, _createPlayerAbilities.AbilitySelector);
-           
-            
+
+
             
             _pointsCounter = new PointsCounter();
             

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Asteroids2D
 {
@@ -6,7 +7,7 @@ namespace Asteroids2D
     {
         private readonly AsteroidMovingView _asteroidMovingView;
         private readonly AsteroidMovingModel _asteroidMovingModel;
-        private readonly AsteroidMovingHp _asteroidMovingHp;
+        public readonly AsteroidMovingHp _asteroidMovingHp;
         protected readonly PointsCounter PointsCounter;
 
         public AsteroidMovingController(AsteroidMovingView asteroidMovingView, AsteroidMovingModel asteroidMovingModel, 
@@ -41,9 +42,8 @@ namespace Asteroids2D
             if (other.gameObject.GetComponent<Bullet>())
             {
                 var bullet = other.gameObject.GetComponent<Bullet>();
-                _asteroidMovingHp.TakeDamage(bullet.Damage);
+                _asteroidMovingHp.TakeDamage(bullet.Damage, _asteroidMovingView.gameObject.name);
             }
-
         }
 
         private void KillPlayer(Collision2D player)
@@ -55,6 +55,5 @@ namespace Asteroids2D
         {
             PointsCounter.ReceivePoints();
         }
-        
     }
 }

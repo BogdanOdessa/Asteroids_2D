@@ -6,7 +6,8 @@ namespace Asteroids2D
 {
    [Serializable] public abstract class Enemy : MonoBehaviour
     {
-        
+       
+
         public static AsteroidMovingController CreateAsteroidMovingController(AsteroidMovingModel asteroidMovingModel,
             PointsCounter pointsCounterClass)
         {

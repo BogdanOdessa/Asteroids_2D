@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Patterns\Interpreter\PointsCounter.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerView.cs" />
      <Compile Include="Assets\Scripts\Patterns\Decorator\ModificationWeapon.cs" />
+     <Compile Include="Assets\Scripts\Observer\IHit.cs" />
      <Compile Include="Assets\Scripts\Player\RotationShip.cs" />
      <Compile Include="Assets\Scripts\Player\Bullet.cs" />
      <Compile Include="Assets\Scripts\Enemy\Health.cs" />
@@ -73,6 +74,7 @@
      <Compile Include="Assets\Scripts\Enemy\AsteroidMovingController.cs" />
      <Compile Include="Assets\Scripts\Patterns\Composite\InfantryFactory.cs" />
      <Compile Include="Assets\Scripts\Patterns\ChainOfCommands\BulletComposedData.cs" />
+     <Compile Include="Assets\Scripts\Observer\EnemyHit.cs" />
      <Compile Include="Assets\Scripts\Enemy\AsteroidMovingHP.cs" />
      <Compile Include="Assets\Scripts\Patterns\ChainOfCommands\AddAttack.cs" />
      <Compile Include="Assets\Scripts\Enemy\Asteroid.cs" />
@@ -105,11 +107,11 @@
      <Compile Include="Assets\Scripts\Patterns\Decorator\WeaponData.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShoot.cs" />
      <Compile Include="Assets\Scripts\Patterns\ChainOfCommands\AddDefenseModifier.cs" />
-     <Compile Include="Assets\Scripts\Prototype\Prototype.cs" />
+     <Compile Include="Assets\Scripts\Patterns\Prototype\Prototype.cs" />
      <Compile Include="Assets\Scripts\Patterns\Bridge\EnemyShipController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMoveTransform.cs" />
      <Compile Include="Assets\Scripts\Player\Axis.cs" />
-     <Compile Include="Assets\Scripts\Prototype\ExamplePrototype.cs" />
+     <Compile Include="Assets\Scripts\Patterns\Prototype\ExamplePrototype.cs" />
      <Compile Include="Assets\Scripts\Patterns\Decorator\Bullet.cs" />
      <Compile Include="Assets\Scripts\Patterns\Builders\GameObjectVisualBuilder.cs" />
      <Compile Include="Assets\Scripts\Interfaces\IFixedUpdateExecute.cs" />
@@ -123,6 +125,7 @@
      <Compile Include="Assets\Scripts\Player\PlayerSettings.cs" />
      <Compile Include="Assets\Scripts\Patterns\Decorator\IAmmunition.cs" />
      <Compile Include="Assets\Scripts\Patterns\Command\StateUI.cs" />
+     <Compile Include="Assets\Scripts\Observer\ListenerHitShowName.cs" />
      <Compile Include="Assets\Scripts\Interfaces\ICreateUnit.cs" />
      <Compile Include="Assets\Scripts\Enemy\AsteroidMoving.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyData.cs" />
@@ -138,7 +141,7 @@
      <Compile Include="Assets\Scripts\Patterns\Decorator\IMuffler.cs" />
      <Compile Include="Assets\Scripts\Player\BulletData.cs" />
      <Compile Include="Assets\Scripts\Patterns\Builders\GameObjectPhysicsBuilder.cs" />
-     <Compile Include="Assets\Scripts\Prototype\PlayerData.cs" />
+     <Compile Include="Assets\Scripts\Patterns\Prototype\PlayerData.cs" />
      <Compile Include="Assets\Scripts\Patterns\Builders\GameObjectDataBuilder.cs" />
      <Compile Include="Assets\Scripts\Enemy\AsteroidFactory.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerSetup.cs" />
@@ -148,7 +151,7 @@
      <Compile Include="Assets\Scripts\Patterns\Iterator\PlayerAbility\Target.cs" />
      <Compile Include="Assets\Scripts\Patterns\ChainOfCommands\BulletModifier.cs" />
      <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
-     <Compile Include="Assets\Scripts\Prototype\HP.cs" />
+     <Compile Include="Assets\Scripts\Patterns\Prototype\HP.cs" />
      <Compile Include="Assets\Scripts\Patterns\Composite\UnitHp.cs" />
      <Compile Include="Assets\Scripts\Patterns\Command\PanelOne.cs" />
      <Compile Include="Assets\Scripts\Patterns\Builders\Example.cs" />
@@ -161,6 +164,15 @@
      <Compile Include="Assets\Scripts\Player\IPlayerFactory.cs" />
      <Compile Include="Assets\Scripts\Enemy\RandomHpGenerator.cs" />
      <Compile Include="Assets\Scripts\Patterns\Bridge\EnemyShoot.cs" />
+     <Compile Include="Assets\Scripts\Patterns\State\State.cs" />
+     <Compile Include="Assets\Scripts\Patterns\State\FirstStateMovingSlow.cs" />
+     <Compile Include="Assets\Scripts\Patterns\State\SecondStateMovingFast.cs" />
+     <Compile Include="Assets\Scripts\Patterns\State\Context.cs" />
+     <Compile Include="Assets\Scripts\Patterns\Visitor\EnemyCountLog.cs" />
+     <Compile Include="Assets\Scripts\Patterns\Visitor\ILog.cs" />
+     <Compile Include="Assets\Scripts\Patterns\Visitor\DebugLog.cs" />
+     <Compile Include="Assets\Scripts\Patterns\Visitor\WarningLog.cs" />
+     <Compile Include="Assets\Scripts\Patterns\Visitor\EnemyCount.cs" />
      <None Include="Assets\Files\data.txt.txt" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

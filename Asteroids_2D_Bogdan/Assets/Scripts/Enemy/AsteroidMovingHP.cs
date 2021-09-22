@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEditor.Timeline.Actions;
+using UnityEngine;
 
 namespace Asteroids2D
 {
-    public class AsteroidMovingHp
+    public class AsteroidMovingHp: IHit
     {
+        public event Action<string> OnHitChange = delegate(string f) { };
         private readonly AsteroidMovingView _asteroidMovingView;
-        public float _hp;
+        private float _hp;
 
         public AsteroidMovingHp(AsteroidMovingModel asteroidMovingModel, AsteroidMovingView asteroidMovingView)
         {
@@ -14,11 +17,19 @@ namespace Asteroids2D
             asteroidMovingView.hp = _hp;
         }
         
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, string name)
         {
             _hp -= damage;
-            if (_hp <= 0) _asteroidMovingView.Die();
+            if (_hp <= 0)
+            { _asteroidMovingView.Die();
+               OnHitChange.Invoke(name);
+            }
         }
-
+        
+        
+        public void Hit(string name)
+        {
+            Debug.Log(name);
+        }
     }
 }

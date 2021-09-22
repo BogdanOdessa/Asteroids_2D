@@ -6,6 +6,7 @@ namespace Asteroids2D
     {
         private readonly IPlayerMove _playerMoveImplementation;
         private readonly IRotation _rotationImplementation;
+       private Context _context;
 
         public float Speed => _playerMoveImplementation.Speed;
 
@@ -13,6 +14,7 @@ namespace Asteroids2D
         {
             _playerMoveImplementation = playerMoveImplementation;
             _rotationImplementation = rotationImplementation;
+            _context = new Context(new FirsStateMovingSlow());
         }
 
         public void Move(float horizontal, float vertical)
@@ -30,6 +32,7 @@ namespace Asteroids2D
             if (_playerMoveImplementation is AccelerationPlayerMove accelerationMove)
             {
                 accelerationMove.AddAcceleration();
+                _context.ChangeState();
             }
         }
 
@@ -38,6 +41,7 @@ namespace Asteroids2D
             if (_playerMoveImplementation is AccelerationPlayerMove accelerationMove)
             {
                 accelerationMove.RemoveAcceleration();
+                _context.ChangeState();
             }
         }
     }

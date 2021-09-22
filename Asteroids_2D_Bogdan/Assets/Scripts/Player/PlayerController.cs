@@ -13,6 +13,8 @@ namespace Asteroids2D
         private readonly WeaponProxy _weaponProxy;
         private readonly BulletsCount _bulletsCount;
         private PlayerAbilitySelector _playerAbilities;
+        private readonly ILog _log;
+        private EnemyCount _enemyCount;
 
         public PlayerController(PlayerView playerView, IGun gun, PlayerAbilitySelector playerAbilities)
         {
@@ -22,6 +24,7 @@ namespace Asteroids2D
             _weaponProxy = new WeaponProxy(_gun, _unlockWeapon, _playerView);
             _bulletsCount = new BulletsCount {Bullets = BulletsCount.FullClip};
             _playerAbilities = playerAbilities;
+            _enemyCount = new EnemyCount();
         }
         public void UpdateExecute()
         {
@@ -59,6 +62,11 @@ namespace Asteroids2D
             {
                 _bulletsCount.Bullets = BulletsCount.FullClip;
                 _unlockWeapon.IsUnlock = true;
+            }
+
+            if (Input.GetKeyUp(KeyCode.C))
+            {
+                _enemyCount.Activate(new WarningLog());
             }
         }
 
