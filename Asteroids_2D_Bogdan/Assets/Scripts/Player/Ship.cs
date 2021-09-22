@@ -2,22 +2,24 @@ using UnityEngine;
 
 namespace Asteroids2D
 {
-    internal sealed class Ship : IMove, IRotation
+    internal sealed class Ship : IPlayerMove, IRotation
     {
-        private readonly IMove _moveImplementation;
+        private readonly IPlayerMove _playerMoveImplementation;
         private readonly IRotation _rotationImplementation;
+       private Context _context;
 
-        public float Speed => _moveImplementation.Speed;
+        public float Speed => _playerMoveImplementation.Speed;
 
-        public Ship(IMove moveImplementation, IRotation rotationImplementation)
+        public Ship(IPlayerMove playerMoveImplementation, IRotation rotationImplementation)
         {
-            _moveImplementation = moveImplementation;
+            _playerMoveImplementation = playerMoveImplementation;
             _rotationImplementation = rotationImplementation;
+            _context = new Context(new FirsStateMovingSlow());
         }
 
         public void Move(float horizontal, float vertical)
         {
-            _moveImplementation.Move(horizontal, vertical);
+            _playerMoveImplementation.Move(horizontal, vertical);
         }
 
         public void Rotation(Vector3 direction)
@@ -27,17 +29,19 @@ namespace Asteroids2D
 
         public void AddAcceleration()
         {
-            if (_moveImplementation is AccelerationMove accelerationMove)
+            if (_playerMoveImplementation is AccelerationPlayerMove accelerationMove)
             {
                 accelerationMove.AddAcceleration();
+                _context.ChangeState();
             }
         }
 
         public void RemoveAcceleration()
         {
-            if (_moveImplementation is AccelerationMove accelerationMove)
+            if (_playerMoveImplementation is AccelerationPlayerMove accelerationMove)
             {
                 accelerationMove.RemoveAcceleration();
+                _context.ChangeState();
             }
         }
     }

@@ -10,7 +10,7 @@ namespace Asteroids2D
         private Camera _camera;
         private Ship _ship;
         private PlayerInitialize _player;
-        private PlayerShoot _playerShoot;
+        public PlayerShoot playerShoot;
         private PlayerHP _playerHp;
         private readonly Axis _axis = new Axis();
 
@@ -19,7 +19,7 @@ namespace Asteroids2D
             _player = FindObjectOfType<GameStarter>().playerInitialize;
             _camera = Camera.main;
             _ship = _player.ship;
-            _playerShoot = _player.playerShoot;
+            playerShoot = _player.playerShoot;
             _playerHp = _player.playerHp;
             
         }
@@ -47,7 +47,7 @@ namespace Asteroids2D
 
         public void Shoot()
         {
-            _playerShoot.Shoot();
+            playerShoot.Shoot();
         }
         
         private void OnCollisionEnter2D(Collision2D other)
